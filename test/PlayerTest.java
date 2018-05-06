@@ -3,9 +3,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class PlayerTest {
-
     @Test
-    public void shouldPlayerPlaceCoinAssignedToHer() throws InvalidInputException {
+    public void shouldPlayerPlaceCoinAssigned() throws InvalidInputException {
         Board board = new Board(3);
         Player player1 = new Player('X');
         Player player2 = new Player('O');

@@ -25,6 +25,13 @@ public class Board {
         squaresWithCoins++;
         if (isGameOver(row, col, coinType)) {
             if (ticTacToeSystem != null) {
+                ticTacToeSystem.notifyPlayerWon();
+            }
+        }
+        if(isBoardFull())
+        {
+            if(ticTacToeSystem != null)
+            {
                 ticTacToeSystem.notifyGameOver();
             }
         }
@@ -34,11 +41,10 @@ public class Board {
     public boolean isGameOver(int row, int col, char coinType) {
         return (isRowOrColumnCrossed(row, col, coinType)
                 || isRightDiagonalCrossed(coinType)
-                || isLeftDiagonalCrossed(coinType)
-                || isBoardFull());
+                || isLeftDiagonalCrossed(coinType));
     }
 
-    private boolean isBoardFull()
+    public boolean isBoardFull()
     {
         return (squaresWithCoins == size * size);
     }

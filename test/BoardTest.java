@@ -90,7 +90,7 @@ public class BoardTest {
         player1.placeCoin(0, 0, board);
         player1.placeCoin(0, 1, board);
         player1.placeCoin(0, 2, board);
-        verify(ticTacToeSystem).notifyGameOver();
+        verify(ticTacToeSystem).notifyPlayerWon();
     }
 
     @Test
