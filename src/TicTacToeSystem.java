@@ -7,20 +7,22 @@ public class TicTacToeSystem {
     static boolean isGameOver = false;
     static String currentPlayer;
     static String winner = "No one";
+
     public static void main(String[] args) throws IOException {
         Player player1 = new Player('X');
         Player player2 = new Player('O');
         boolean isPlayer2TurnOver = true;
         boolean isPlayer1TurnOver = false;
         board.setTicTacToeSystem(new TicTacToeSystem());
-
+        boolean isFirstMove = true;
         while (!isGameOver) {
             try {
-                if (isPlayer2TurnOver) {
+                if (isPlayer2TurnOver || isFirstMove) {
                     System.out.println("Player1's turn");
-                    int[] input = getInput();
+                    int[] input1 = getInput();
                     currentPlayer = "Player1";
-                    isPlayer1TurnOver = player1.placeCoin(input[0], input[1], board);
+                    isPlayer1TurnOver = player1.placeCoin(input1[0], input1[1], board);
+                    isFirstMove = false;
                     printBoard();
                 }
                 if (isPlayer1TurnOver && !isGameOver) {
@@ -34,7 +36,7 @@ public class TicTacToeSystem {
                 System.out.println("Please try other co ordinates.");
             } catch (InputMismatchException e) {
                 System.out.println("Please enter inputs in valid format.");
-            } catch (IOException e){
+            } catch (IOException e) {
                 System.out.println("Please try again.");
             }
         }
@@ -46,7 +48,7 @@ public class TicTacToeSystem {
         isGameOver = true;
     }
 
-    public void notifyPlayerWon(){
+    public void notifyPlayerWon() {
         isGameOver = true;
         winner = currentPlayer;
     }
@@ -61,8 +63,8 @@ public class TicTacToeSystem {
     }
 
     private static void printBoard() {
-        for (int i = 0; i < board.boardArray.length + 1; i++) {
-            for (int j = 0; j < board.boardArray.length + 1; j++) {
+        for (int i = 0; i < board.cells.length + 1; i++) {
+            for (int j = 0; j < board.cells.length + 1; j++) {
                 if (j > 0 && i == 0)
                     System.out.print(j - 1);
                 else if (j == 0 && i == 0)
@@ -70,10 +72,10 @@ public class TicTacToeSystem {
                 else if (i > 0 && j == 0)
                     System.out.print(i - 1);
                 else if (j > 0 && i > 0) {
-                    if (board.boardArray[i - 1][j - 1] == '\0')
+                    if (board.cells[i - 1][j - 1] == '\0')
                         System.out.print(" ");
                     else
-                        System.out.print(board.boardArray[i - 1][j - 1]);
+                        System.out.print(board.cells[i - 1][j - 1]);
                 }
             }
             System.out.println();

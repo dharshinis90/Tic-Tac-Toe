@@ -9,14 +9,14 @@ public class BoardTest {
     public void shouldPlaceCoinXAtGivenRowAndCol() throws InvalidInputException {
         Board board = new Board(3);
         board.placeCoin(1, 1, 'X');
-        assertEquals(board.boardArray[1][1], 'X');
+        assertEquals(board.cells[1][1], 'X');
     }
 
     @Test
     public void shouldPlaceCoinOAtGivenRownAndCol() throws InvalidInputException {
         Board board = new Board(3);
         board.placeCoin(1, 1, 'O');
-        assertEquals(board.boardArray[1][1], 'O');
+        assertEquals(board.cells[1][1], 'O');
     }
 
     @Test(expected = InvalidInputException.class)

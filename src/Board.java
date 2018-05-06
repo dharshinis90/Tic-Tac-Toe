@@ -1,16 +1,15 @@
 public class Board {
-    public char[][] boardArray;
+    public char[][] cells;
     private int size;
     private TicTacToeSystem ticTacToeSystem;
     private int squaresWithCoins = 0;
 
     public Board(int size) {
         this.size = size;
-        boardArray = new char[size][size];
+        cells = new char[size][size];
     }
 
-    public void setTicTacToeSystem(TicTacToeSystem ticTacToeSystem)
-    {
+    public void setTicTacToeSystem(TicTacToeSystem ticTacToeSystem) {
         this.ticTacToeSystem = ticTacToeSystem;
     }
 
@@ -18,20 +17,18 @@ public class Board {
         if (row >= size || col >= size) {
             throw new InvalidInputException();
         }
-        if (boardArray[row][col] != '\0') {
+        if (cells[row][col] != '\0') {
             throw new InvalidInputException();
         }
-        boardArray[row][col] = coinType;
+        cells[row][col] = coinType;
         squaresWithCoins++;
         if (isGameOver(row, col, coinType)) {
             if (ticTacToeSystem != null) {
                 ticTacToeSystem.notifyPlayerWon();
             }
         }
-        if(isBoardFull())
-        {
-            if(ticTacToeSystem != null)
-            {
+        if (isBoardFull()) {
+            if (ticTacToeSystem != null) {
                 ticTacToeSystem.notifyGameOver();
             }
         }
@@ -44,15 +41,14 @@ public class Board {
                 || isLeftDiagonalCrossed(coinType));
     }
 
-    public boolean isBoardFull()
-    {
+    public boolean isBoardFull() {
         return (squaresWithCoins == size * size);
     }
 
     private boolean isLeftDiagonalCrossed(char coinType) {
         int leftDiagonalCount = 0;
         for (int i = 0, j = 0; i < size; i++, j++) {
-            if (boardArray[i][j] == coinType) {
+            if (cells[i][j] == coinType) {
                 {
                     leftDiagonalCount++;
                 }
@@ -64,7 +60,7 @@ public class Board {
     private boolean isRightDiagonalCrossed(char coinType) {
         int rightDiagonalCount = 0;
         for (int i = 0, j = size - 1; i < size; i++, j--) {
-            if (boardArray[i][j] == coinType) {
+            if (cells[i][j] == coinType) {
                 rightDiagonalCount++;
             }
         }
@@ -75,10 +71,10 @@ public class Board {
         int rowCount = 0;
         int colCount = 0;
         for (int i = 0; i < size; i++) {
-            if (boardArray[row][i] == coinType) {
+            if (cells[row][i] == coinType) {
                 rowCount++;
             }
-            if (boardArray[i][col] == coinType) {
+            if (cells[i][col] == coinType) {
                 colCount++;
             }
         }
